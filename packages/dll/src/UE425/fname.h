@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
 #include <unordered_map>
+#include <string>
 
 struct FName {
 	uint32_t Index; // 0x00(0x04)

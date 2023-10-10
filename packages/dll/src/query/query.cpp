@@ -593,6 +593,20 @@ void QueryExecutor::processCommandNoop(QueryCommandTypes command) {
 	}
 }
 
+template<class ForwardIt>
+ForwardIt __unique(ForwardIt first, ForwardIt last)
+{
+    if (first == last)
+        return last;
+ 
+    ForwardIt result = first;
+    while (++first != last)
+        if (!(*result == *first) && ++result != first)
+            *result = std::move(*first);
+ 
+    return ++result;
+}
+
 std::vector<int> QueryExecutor::getArrayIndices(int arraySize) {
 	std::vector<int> indices;
 
@@ -613,7 +627,7 @@ std::vector<int> QueryExecutor::getArrayIndices(int arraySize) {
 			indices.push_back(i);
 	}
 
-	indices.erase(std::unique(indices.begin(), indices.end()), indices.end());
+	indices.erase(__unique(indices.begin(), indices.end()), indices.end());
 
 	return indices;
 }
