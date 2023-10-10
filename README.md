@@ -36,7 +36,7 @@ Then to start the electron app run `yarn start` from the `packages/electron` dir
 2. Install VSCode build tools (2022) and wix 3.11 [(here)](https://github.com/wixtoolset/wix3/releases/tag/wix3112rtm)
 3. Add both installed tools to path (in my case, they're `C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin` and `C:\Program Files (x86)\WiX Toolset v3.11\bin`)
 4. Modify some files so that newer build tools do not complain (Already done in this fork)
-	* In `packages/dll/src/query/query.cpp`: Modify `std::unique` to local unique function [(ref)](https://en.cppreference.com/w/cpp/algorithm/unique)
+	* In `packages/dll/src/query/query.cpp`: Add `#include <algorithm>`
 	* In `packages/dll/src/UE425/fname.h`: Add `#include <string>`
 5. If you're using Node v17 or above, set an environmental variable `$env:NODE_OPTIONS="--no-experimental-fetch"`
 6. Run the build command `yarn lerna run build`. This may take a few minutes
